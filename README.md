@@ -7,37 +7,11 @@
 ├── cmake
 │   └── CompilerOptions.cmake
 ├── CMakeLists.txt
-├── lib
-│   ├── file_io
-│   │   ├── CMakeLists.txt
-│   │   ├── include
-│   │   │   └── ...
-│   │   └── src
-│   │       └── ...
-│   ├── gif_enc
-│   │   ├── CMakeLists.txt
-│   │   ├── include
-│   │   │   └── ...
-│   │   └── src
-│   │       └── ...
-│   ├── image_sequence
-│   │   ├── CMakeLists.txt
-│   │   ├── include
-│   │   │   └── ...
-│   │   └── src
-│   │       └── ...
-│   └── include
-│       └── ...
-├── lsb
-│   ├── CMakeLists.txt
-│   ├── include
-│   │   └── ...
-│   └── src
-│       └── ...
-├── mirage
-│   ├── CMakeLists.txt
-│   ├── include
-│   │   └── ...
-│   └── src
-│       └── ...
+├── lib      # 辅助模块
+│   ├── include         # 头文件库
+│   ├── file_io         # 数据读写
+│   ├── gif_enc         # GIF 编码 & LZW 编解码
+│   └── image_sequence  # 动图解码 & 图像基础处理
+├── lsb      # LSB 隐写编解码
+├── mirage   # "幻影坦克"隐藏图编码
 ...
