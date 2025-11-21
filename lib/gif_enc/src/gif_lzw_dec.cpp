@@ -115,9 +115,7 @@ LZWDecompressImpl::process(const span<const uint8_t>& data) {
         return code;
     };
     int32_t code = popCode();
-    if (m_result.empty() && code == static_cast<int32_t>(m_cleanCode)) {
-        code = popCode();
-    }
+
     while (code != -1 && !m_finished) {
         if (const auto codeU = static_cast<uint16_t>(code); codeU == m_cleanCode) {
             _reset();
@@ -252,7 +250,7 @@ GIFEnc::LZW::decompress(const span<const uint8_t>& data, const uint32_t minCodeS
     auto decoder = LZWDecompressImpl([&out](const span<const uint8_t>& data) { out.insert(out.end(), data.begin(), data.end()); },
                                      [&out]() { out.clear(); },
                                      minCodeSize,
-                                     WRITE_DEFAULT_CHUNK_SIZE);
+                                     GIFEnc::LZW::WRITE_DEFAULT_CHUNK_SIZE);
     decoder.process(data);
     decoder.finish();
     return out;
