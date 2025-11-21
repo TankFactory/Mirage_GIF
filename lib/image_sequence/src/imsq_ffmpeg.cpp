@@ -3,8 +3,10 @@
 #include <string>
 
 #include "defer.h"
+#include "file_utils.h"
 #include "imsq.h"
 #include "imsq_exception.h"
+#include "imsq_webp.cpp"
 #include "log.h"
 
 extern "C" {
@@ -67,6 +69,9 @@ ImageSequence::initDecoder(const char*) noexcept {
 ImageSequence::Ref
 ImageSequence::read(const string& filename) noexcept {
     try {
+        if (NaiveIO::getExtName(filename) == "webp") {
+            return std::make_unique<ImageSequenceWebpImpl>(filename);
+        }
         return std::make_unique<ImageSequenceFFmpegImpl>(filename);
     } catch (const std::exception& e) {
         GeneralLogger::error("Error reading image sequence: " + string(e.what()));

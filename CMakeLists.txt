@@ -23,5 +23,8 @@ else()
     set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_LIST_DIR}/bin/lib)
 endif()
 
+set(TARGET_EXE ON)
+set(TARGET_LIB ON)
+
 # include(${CMAKE_CURRENT_LIST_DIR}/mirage/CMakeLists.txt)
 include(${CMAKE_CURRENT_LIST_DIR}/lsb/CMakeLists.txt)

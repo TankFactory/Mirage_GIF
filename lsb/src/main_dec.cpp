@@ -1,5 +1,6 @@
 #include "gif_lsb.h"
 #include "imsq_stream.h"
+#include "log.h"
 #include "options.h"
 
 #define CLI_MAIN
@@ -15,6 +16,8 @@ const std::vector<std::string> g_mockArgs{
     "-d",
     "../../images",
 };
+
+std::ostream* GeneralLogger::logStream = &std::cerr;
 
 int
 main(int argc, char** argv) {

@@ -6,6 +6,7 @@
 
 #include "imsq_exception.h"
 #include "imsq_stream.h"
+#include "imsqs_webp.cpp"
 #include "log.h"
 
 extern "C" {
@@ -56,6 +57,9 @@ class ImageSequenceStreamFFmpegImpl : public ImageSequenceStream {
 ImageSequenceStream::Ref
 ImageSequenceStream::read(const string& filename) noexcept {
     try {
+        if (NaiveIO::getExtName(filename) == "webp") {
+            return std::make_unique<ImageSequenceStreamWebpImpl>(filename);
+        }
         return std::make_unique<ImageSequenceStreamFFmpegImpl>(filename);
     } catch (const ImageParseException& e) {
         GeneralLogger::error("Error reading image sequence: " + string(e.what()));

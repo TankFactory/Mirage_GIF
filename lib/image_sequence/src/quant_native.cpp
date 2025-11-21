@@ -69,7 +69,6 @@ static constexpr uint8_t REVERSE_GRAY_MAP[8] = {
 static constexpr int32_t FLOYD_MAX_ERROR = 24;
 
 // static uint32_t _BEEP_CNT = 0;
-
 class OctreeQuantizer {
     struct Node {
         union {

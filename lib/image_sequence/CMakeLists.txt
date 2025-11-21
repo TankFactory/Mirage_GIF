@@ -21,15 +21,16 @@ else()
     find_package(PkgConfig REQUIRED)
 
     set(ffmpeg_libs libavcodec libavformat libavutil libswscale libavfilter)
+    set(webp_libs libwebp)
 
-    pkg_check_modules(FFMPEG REQUIRED ${ffmpeg_libs})
+    pkg_check_modules(FFMPEG REQUIRED ${ffmpeg_libs} ${webp_libs})
 
-    list(APPEND LINK_LIBRARIES ${FFMPEG_LIBRARIES})
+    list(APPEND LINK_LIBRARIES ${FFMPEG_LIBRARIES} ${WEBP_LIBRARIES})
     list(APPEND SOURCE_FILES
-        ${CMAKE_CURRENT_LIST_DIR}/src/imsq_ffmpeg.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/src/imsq_ffmpeg.cpp<
         ${CMAKE_CURRENT_LIST_DIR}/src/imsqs_ffmpeg.cpp
     )
-    list(APPEND INCLUDE_DIRS ${FFMPEG_INCLUDE_DIRS})
+    list(APPEND INCLUDE_DIRS ${FFMPEG_INCLUDE_DIRS} ${WEBP_INCLUDE_DIRS})
     set(COMPILE_DEFINITIONS "IMSQ_USE_FFMPEG")
 endif()
 
